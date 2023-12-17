@@ -1,0 +1,5 @@
+{
+    "require": {
+        "mckenziearts/laravel-notify": "^2.4"
+    }
+}
