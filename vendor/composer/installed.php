@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '181fb9c956c8f2ed76be0c8919fba4c1b1881000',
+        'reference' => 'ee53cfa288d0440d16de40e3f789e62f603780b5',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -382,7 +382,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '181fb9c956c8f2ed76be0c8919fba4c1b1881000',
+            'reference' => 'ee53cfa288d0440d16de40e3f789e62f603780b5',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -484,15 +484,6 @@
             'reference' => 'b6a5854368533df0295c5761a0253656a2e52d9e',
             'type' => 'library',
             'install_path' => __DIR__ . '/../league/mime-type-detection',
-            'aliases' => array(),
-            'dev_requirement' => false,
-        ),
-        'mckenziearts/laravel-notify' => array(
-            'pretty_version' => 'v2.4',
-            'version' => '2.4.0.0',
-            'reference' => 'fddde15ae2407792f2884e6f9107d49e9e608cbe',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../mckenziearts/laravel-notify',
             'aliases' => array(),
             'dev_requirement' => false,
         ),
@@ -766,8 +757,8 @@
         'psr/log-implementation' => array(
             'dev_requirement' => false,
             'provided' => array(
-                0 => '1.0|2.0|3.0',
-                1 => '3.0.0',
+                0 => '3.0.0',
+                1 => '1.0|2.0|3.0',
             ),
         ),
         'psr/simple-cache' => array(
