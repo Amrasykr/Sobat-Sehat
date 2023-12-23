@@ -1,0 +1,28 @@
+
+Todo:
+    backend:
+        [] database migration tables
+        [] database seeders
+        [] api
+        controllers:
+            [] user controller
+            [] berita controller
+            [] kegiatan controller
+            [] auth controller
+
+    frontend:
+        components:
+            [] navbar
+            [] footer
+            [] button
+            [] card berita
+            [] card kegiatan
+        page:
+            [] page berita
+            [] page kegiatan
+            [] page about us
+        admin:
+            [] kelola berita
+            [] kelola kegiatan
+            [] kelola validasi kontribusi pengguna
+
