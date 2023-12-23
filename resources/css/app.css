@@ -1,3 +1,30 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* Your additional styles go here */
+
+.lemon-background {
+    background-image: url('../../public/images/background/landing.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.btn{
+    @apply rounded-full p-2 px-4 ring-inset
+}
+
+.btn-primary {
+    @apply bg-cyan-500 text-white btn
+
+}
+
+.btn-primary:active {
+    @apply ring-2 ring-white bg-cyan-500
+}
+
+.btn-light {
+    @apply bg-white text-cyan-500 btn
+}
+.btn-light:active {
+    @apply ring-2 ring-white bg-cyan-500 text-white
+}
