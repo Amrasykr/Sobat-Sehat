@@ -9,10 +9,6 @@
     background-size: cover;
 }
 
-/* <a href="#" class=" |  |  ">LOGIN</a>
-            <a href="#" class=" |  | ">DAFTAR</a> */
-
-
 .btn{
     @apply rounded-full p-2 px-4 ring-inset
 }

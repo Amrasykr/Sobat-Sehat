@@ -17,6 +17,15 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->enum(
+                'role',
+                ['admin', 'kontributor', ]
+            )->default('kontributor');
+            $table->enum(
+                'validation',
+                ['pending', 'diterima  ', 'ditolak' ]
+            )->default('pending');
+            $table->string('image')->default('default.png');
             $table->rememberToken();
             $table->timestamps();
         });
