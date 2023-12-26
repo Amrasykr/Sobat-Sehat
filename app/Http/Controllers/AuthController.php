@@ -36,17 +36,44 @@ class AuthController extends Controller
             'email' => $request->email,
             'password' => $request->password
         ];
-
+    
+        // Cek apakah user terautentikasi
         if (Auth::attempt($input)) {
-            $token = $request->user()->createToken('my_token');
-
-            $data = [
-                'token' => $token->plainTextToken
-            ];        
-
-            return $this->responseSuccess($data, 'User logged in successfully.', 200);
+            $user = $request->user();
+            $role = $user->role;
+            $validation = $user->validation;
+    
+            // Jika rolenya kontributor
+            if ($role === 'kontributor') {
+                if ($validation === 'pending') {
+                    return $this->responseUnauthorized('Registration status is still pending, please wait.');
+                } elseif ($validation === 'ditolak') {
+                    return $this->responseUnauthorized('Registration status is blocked.');
+                } elseif ($validation === 'diterima') {
+                    // Jika status diterima, izinkan login
+                    $token = $user->createToken('my_token');
+                    $data = [
+                        'token' => $token->plainTextToken
+                    ];        
+    
+                    return $this->responseSuccess($data, 'User logged in successfully.', 200);
+                }
+            } elseif ($role === 'admin') {
+                // Jika rolenya admin, izinkan login
+                $token = $user->createToken('my_token');
+                $data = [
+                    'token' => $token->plainTextToken
+                ];        
+    
+                return $this->responseSuccess($data, 'User logged in successfully.', 200);
+            }
+    
+            // Default: Tidak ada izin
+            return $this->responseUnauthorized('Login failed.');
         } else {
             return $this->responseUnauthorized('Login failed.');
         }
     }
+    
+    
 }
