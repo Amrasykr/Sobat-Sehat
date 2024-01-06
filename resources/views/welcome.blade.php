@@ -1,7 +1,7 @@
 @extends('layouts.frontend')
 
 @section('content')
-    <main class="lemon-background">
+    <main class="lemon-background" style="background-image: url('{{ asset('images/background/landing.png') }}');">
         <div id="hero" class="py-4 max-w-5xl container mx-auto mb-16">
             <div class="">
                 <h1 class="font-bold text-6xl">

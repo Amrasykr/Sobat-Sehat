@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Activities;
 use Illuminate\Http\Request;
 
 class ActivitiesController extends Controller
@@ -11,8 +12,21 @@ class ActivitiesController extends Controller
      */
     public function index()
     {
-        //
+        $activities = Activities::all();
+
+
+        return view('admin.activities.index', ['activities' => $activities]);
     }
+
+    /**
+     * Show form.
+     */
+
+    public function create()
+    {
+        return view('admin.activities.create');
+    }
+
 
     /**
      * Store a newly created resource in storage.

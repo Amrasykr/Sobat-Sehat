@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ActivitiesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,10 @@ Route::get('/', function () {
 Route::get('/login', function () {
     return view('auth.login');
 })->name('login');
+
+
+
+
+Route::get('/admin/dashboard', [ActivitiesController::class, 'index'])->name('dashboard');
+Route::get('/admin/activities', [ActivitiesController::class, 'index'])->name('activities.index');
+Route::get('/admin/activities/create', [ActivitiesController::class, 'create'])->name('activities.create');
