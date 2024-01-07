@@ -12,13 +12,16 @@ class ActivitiesUserController extends Controller
      */
     public function index()
     {
-        //
+        
         $activities = Activities::all();
         if ($activities->isEmpty()) {
             return $this->responseError('There are no activities.');
         } else {
             return $this->responseSuccess($activities, 'Successfully displays activities', 200);
         }
+
+        $activities = Activities::all();
+        return view ('user/activities', compact('activities'));
     }
 
     /**
@@ -41,6 +44,8 @@ class ActivitiesUserController extends Controller
         } else {
             return $this->responseError('Activity not found.');
         }
+
+        
     }
 
     /**

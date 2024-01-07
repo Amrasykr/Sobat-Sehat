@@ -51,8 +51,6 @@ class ActivitiesController extends Controller
             'image' => 'required',
             'activity_date' => 'required|date',
         ]);
-    
-        $validatedData['author_id'] = $user->id; 
 
         // dd($validatedData);
     
@@ -115,6 +113,7 @@ class ActivitiesController extends Controller
                 'activity_date' => 'required|date',
             ]);
     
+            
             $activity->update($validatedData);
     
             return $this->responseSuccess($activity, 'Activity updated successfully.', 200);

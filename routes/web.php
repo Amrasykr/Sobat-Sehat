@@ -1,6 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Symfony\Component\Routing\Annotation\Route as AnnotationRoute;
+use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ActivitiesController;
+use App\Http\Controllers\NewsController;
+use App\Http\Controllers\NewsUserController;
+use App\Http\Controllers\ActivitiesUserController;
+use App\Http\Controllers\ContributorValidationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +23,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/user/activities', [ActivitiesUserController::class, 'index']);
