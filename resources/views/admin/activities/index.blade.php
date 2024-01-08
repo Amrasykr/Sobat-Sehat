@@ -45,7 +45,7 @@
                                             </svg>
                                             Export
                                         </button>
-                                        <div class="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden mt-2 divide-y divide-gray-200 min-w-[12rem] z-10 bg-white shadow-md rounded-lg p-2 mt-2 dark:divide-gray-700 dark:bg-gray-800 dark:border dark:border-gray-700"
+                                        <div class="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden mt-2 divide-y divide-gray-200 min-w-[12rem] z-10 bg-white shadow-md rounded-lg p-2 dark:divide-gray-700 dark:bg-gray-800 dark:border dark:border-gray-700"
                                             aria-labelledby="hs-as-table-table-export-dropdown">
                                             <div class="py-2 first:pt-0 last:pb-0">
                                                 <span
@@ -132,7 +132,7 @@
                                                 1
                                             </span>
                                         </button>
-                                        <div class="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden mt-2 divide-y divide-gray-200 min-w-[12rem] z-10 bg-white shadow-md rounded-lg mt-2 dark:divide-gray-700 dark:bg-gray-800 dark:border dark:border-gray-700"
+                                        <div class="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden mt-2 divide-y divide-gray-200 min-w-[12rem] z-10 bg-white shadow-md rounded-lg dark:divide-gray-700 dark:bg-gray-800 dark:border dark:border-gray-700"
                                             aria-labelledby="hs-as-table-table-filter-dropdown">
                                             <div class="divide-y divide-gray-200 dark:divide-gray-700">
                                                 <label for="hs-as-filters-dropdown-all" class="flex py-2.5 px-3">
@@ -167,6 +167,7 @@
                         <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                             <thead class="bg-gray-50 dark:bg-slate-800">
                                 <tr>
+                                    {{-- title --}}
                                     <th scope="col" class="px-6 py-3 text-start">
                                         <div class="flex items-center gap-x-2">
                                             <span
@@ -175,7 +176,16 @@
                                             </span>
                                         </div>
                                     </th>
-
+                                    {{-- category --}}
+                                    <th scope="col" class="px-6 py-3 text-start">
+                                        <div class="flex items-center gap-x-2">
+                                            <span
+                                                class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
+                                                Category
+                                            </span>
+                                        </div>
+                                    </th>
+                                    {{-- author --}}
                                     <th scope="col" class="px-6 py-3 text-start">
                                         <div class="flex items-center gap-x-2">
                                             <span
@@ -184,16 +194,7 @@
                                             </span>
                                         </div>
                                     </th>
-
-                                    <th scope="col" class="px-6 py-3 text-start">
-                                        <div class="flex items-center gap-x-2">
-                                            <span
-                                                class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                                                Description
-                                            </span>
-                                        </div>
-                                    </th>
-
+                                    {{-- date --}}
                                     <th scope="col" class="px-6 py-3 text-start">
                                         <div class="flex items-center gap-x-2">
                                             <span
@@ -202,12 +203,12 @@
                                             </span>
                                         </div>
                                     </th>
-
+                                    {{-- action --}}
                                     <th scope="col" class="px-6 py-3 text-start">
                                         <div class="flex items-center gap-x-2">
                                             <span
                                                 class="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                                                Status
+                                                Action
                                             </span>
                                         </div>
                                     </th>
@@ -216,14 +217,18 @@
 
 
                             <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+
                                 @foreach ($activities as $activity)
                                     <tr class="bg-white hover:bg-gray-50 dark:bg-slate-900 dark:hover:bg-slate-800">
+                                        {{-- title --}}
                                         <td class="h-px w-px whitespace-nowrap align-top">
                                             <div class="block p-6">
                                                 <div class="flex items-center gap-x-4">
-                                                    <img class="flex-shrink-0 h-[2.375rem] w-[2.375rem] rounded-lg"
-                                                        src="https://images.unsplash.com/photo-1572307480813-ceb0e59d8325?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=320&h=320&q=80"
-                                                        alt="Image Description">
+                                                    <div class="image-container | bg-gray-200 h-[2.375rem] w-[2.375rem] rounded-lg overflow-hidden">
+                                                        <img class=""
+                                                        src=""
+                                                        alt="">
+                                                    </div>
                                                     <div>
                                                         <span
                                                             class="block text-sm font-semibold text-gray-800 dark:text-gray-200">
@@ -232,51 +237,119 @@
                                                 </div>
                                             </div>
                                         </td>
+                                        {{-- category --}}
+                                        <td class="h-px w-px whitespace-nowrap align-top">
+                                            <div class="block p-6">
+                                                <div class="flex items-center gap-x-4">
+                                                    <div>
+                                                        <span class="block text-gray-800 dark:text-gray-200 capitalize">
+                                                            {{ $activity->category }}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        {{-- author --}}
                                         <td class="h-px w-px whitespace-nowrap align-top">
                                             <div class="block p-6">
                                                 <div class="flex items-center gap-x-3">
-                                                    <div class="bg-gray-200 h-[2.375rem] w-[2.375rem] rounded-full overflow-hidden">
-
-                                                        <img class=""
-                                                            src="https://images.unsplash.com/photo-1531927557220-a9e23c1e4794?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=300&h=300&q=80"
-                                                            alt="">
+                                                    <div
+                                                        class="image-container | bg-gray-200 h-[2.375rem] w-[2.375rem] rounded-full overflow-hidden">
+                                                        <img class="" src="" alt="">
                                                     </div>
                                                     <div class="grow">
                                                         <span
                                                             class="block text-sm font-semibold text-gray-800 dark:text-gray-200">
                                                             {{ $activity->user->name }}
                                                         </span>
-                                                        <span class="block text-sm text-gray-500">{{ $activity->user->email }}</span>
+                                                        <span
+                                                            class="block text-sm text-gray-500">{{ $activity->user->email }}</span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </td>
-                                        <td class="h-px w-72 min-w-[18rem] align-top">
-                                            <div class="block p-6">
-                                                {{ $activity->description }}
-                                            </div>
-                                        </td>
-                                        <td class="h-px w-px whitespace-nowrap align-top">
-                                            <div class="block p-6">
-                                                <span class="text-sm text-gray-600 dark:text-gray-400">{{ $activity->activity_date }}</span>
-                                            </div>
-                                        </td>
+                                        {{-- activity date --}}
                                         <td class="h-px w-px whitespace-nowrap align-top">
                                             <div class="block p-6">
                                                 <span
-                                                    class="py-1 px-1.5 inline-flex items-center gap-x-1 text-xs font-medium bg-teal-100 text-teal-800 rounded-full dark:bg-teal-500/10 dark:text-teal-500">
-                                                    <svg class="w-2.5 h-2.5" xmlns="http://www.w3.org/2000/svg"
-                                                        width="16" height="16" fill="currentColor"
-                                                        viewBox="0 0 16 16">
+                                                    class="text-sm text-gray-600 dark:text-gray-400">{{ $activity->activity_date }}</span>
+                                            </div>
+                                        </td>
+                                        {{-- action --}}
+                                        <td class="h-px w-px whitespace-nowrap align-top">
+                                            <div class="block p-6">
+                                                {{-- edit button --}}
+                                                <a href="" {{-- todo: edit route --}}
+                                                    class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-yellow-100 fill-yellow-500 text-yellow-500  hover:bg-yellow-500 hover:text-white hover:fill-white disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                                                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg"
+                                                        id="Outline" viewBox="0 0 24 24" width="512"
+                                                        height="512">
                                                         <path
-                                                            d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                                                            d="M22.853,1.148a3.626,3.626,0,0,0-5.124,0L1.465,17.412A4.968,4.968,0,0,0,0,20.947V23a1,1,0,0,0,1,1H3.053a4.966,4.966,0,0,0,3.535-1.464L22.853,6.271A3.626,3.626,0,0,0,22.853,1.148ZM5.174,21.122A3.022,3.022,0,0,1,3.053,22H2V20.947a2.98,2.98,0,0,1,.879-2.121L15.222,6.483l2.3,2.3ZM21.438,4.857,18.932,7.364l-2.3-2.295,2.507-2.507a1.623,1.623,0,1,1,2.295,2.3Z" />
                                                     </svg>
-                                                    Published
-                                                </span>
+                                                    <span class="hidden lg:inline">Edit</span>
+                                                </a>
+                                                {{-- delete button --}}
+                                                <button type="button" data-hs-overlay="#hs-basic-modal"
+                                                    class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-red-100 fill-red-500 text-red-500  hover:bg-red-500 hover:text-white hover:fill-white disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                                                    <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg"
+                                                        id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24">
+                                                        <path
+                                                            d="m15.707,11.707l-2.293,2.293,2.293,2.293c.391.391.391,1.023,0,1.414-.195.195-.451.293-.707.293s-.512-.098-.707-.293l-2.293-2.293-2.293,2.293c-.195.195-.451.293-.707.293s-.512-.098-.707-.293c-.391-.391-.391-1.023,0-1.414l2.293-2.293-2.293-2.293c-.391-.391-.391-1.023,0-1.414s1.023-.391,1.414,0l2.293,2.293,2.293-2.293c.391-.391,1.023-.391,1.414,0s.391,1.023,0,1.414Zm7.293-6.707c0,.553-.448,1-1,1h-.885l-1.276,13.472c-.245,2.581-2.385,4.528-4.978,4.528h-5.727c-2.589,0-4.729-1.943-4.977-4.521l-1.296-13.479h-.86c-.552,0-1-.447-1-1s.448-1,1-1h4.101c.465-2.279,2.485-4,4.899-4h2c2.414,0,4.435,1.721,4.899,4h4.101c.552,0,1,.447,1,1Zm-14.828-1h7.656c-.413-1.164-1.524-2-2.828-2h-2c-1.304,0-2.415.836-2.828,2Zm10.934,2H4.87l1.278,13.287c.148,1.547,1.432,2.713,2.986,2.713h5.727c1.556,0,2.84-1.168,2.987-2.718l1.258-13.282Z" />
+                                                    </svg>
+                                                    <span class="hidden lg:inline">Delete</span>
+                                                </button>
+                                                {{-- modal --}}
+                                                <div id="hs-basic-modal"
+                                                    class="hs-overlay hs-overlay-open:opacity-100 hs-overlay-open:duration-500 hidden w-full h-full fixed top-0 start-0 z-[80] opacity-0 overflow-x-hidden transition-all overflow-y-auto pointer-events-none">
+                                                    <div
+                                                        class="hs-overlay-open:opacity-100 hs-overlay-open:duration-500 opacity-0 transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto">
+                                                        <div
+                                                            class="flex flex-col bg-white border shadow-sm rounded-xl pointer-events-auto dark:bg-gray-800 dark:border-gray-700 dark:shadow-slate-700/[.7]">
+                                                            <div
+                                                                class="flex justify-between items-center py-3 px-4 border-b dark:border-gray-700">
+                                                                <h3 class="font-bold text-gray-800 dark:text-white">
+                                                                    Hapus Artikel/Kegiatan?
+                                                                </h3>
+                                                                <button type="button"
+                                                                    class="flex justify-center items-center w-7 h-7 text-sm font-semibold rounded-full border border-transparent text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-gray-700 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                                                                    data-hs-overlay="#hs-basic-modal">
+                                                                    <span class="sr-only">Tutup</span>
+                                                                    <svg class="flex-shrink-0 w-4 h-4"
+                                                                        xmlns="http://www.w3.org/2000/svg" width="24"
+                                                                        height="24" viewBox="0 0 24 24" fill="none"
+                                                                        stroke="currentColor" stroke-width="2"
+                                                                        stroke-linecap="round" stroke-linejoin="round">
+                                                                        <path d="M18 6 6 18" />
+                                                                        <path d="m6 6 12 12" />
+                                                                    </svg>
+                                                                </button>
+                                                            </div>
+                                                            <div class="p-4 overflow-y-auto">
+                                                                <p class="mt-1 text-gray-800 dark:text-gray-400">
+                                                                    Apakah anda yakin ingin menghapus artikel atau aktifitas
+                                                                    <br> "{{ $activity->title }}"
+                                                                </p>
+                                                            </div>
+                                                            <div
+                                                                class="flex justify-end items-center gap-x-2 py-3 px-4 border-t dark:border-gray-700">
+                                                                <button type="button"
+                                                                    class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
+                                                                    data-hs-overlay="#hs-basic-modal">
+                                                                    Batal
+                                                                </button>
+                                                                <a href="#" {{-- todo: delete route --}}
+                                                                    class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-red-600 text-white hover:bg-red-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                                                                    Hapus
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </td>
                                     </tr>
                                 @endforeach
+
                             </tbody>
 
 
