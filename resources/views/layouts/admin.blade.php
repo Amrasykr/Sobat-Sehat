@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 
 <head>
     <meta charset="UTF-8">
@@ -155,7 +155,7 @@
 
 
     <!-- ========== MAIN CONTENT ========== -->
-    
+
 
     <x-admin.sidebar />
 

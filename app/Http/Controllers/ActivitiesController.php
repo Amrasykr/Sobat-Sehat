@@ -33,7 +33,7 @@ class ActivitiesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
     }
 
     /**

@@ -27,4 +27,5 @@ Route::get('/login', function () {
 
 Route::get('/admin/dashboard', [ActivitiesController::class, 'index'])->name('dashboard');
 Route::get('/admin/activities', [ActivitiesController::class, 'index'])->name('activities.index');
+Route::post('/admin/activities', [ActivitiesController::class, 'store'])->name('activities.store');
 Route::get('/admin/activities/create', [ActivitiesController::class, 'create'])->name('activities.create');
