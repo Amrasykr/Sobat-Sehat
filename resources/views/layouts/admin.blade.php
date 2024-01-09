@@ -7,7 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 
-    @vite('public/js/app.js')
+    {{-- @vite('public/js/app.js') --}}
+    <script src="{{ asset('js/preline.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 

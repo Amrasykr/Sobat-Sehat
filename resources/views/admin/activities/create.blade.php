@@ -3,7 +3,7 @@
 @section('content')
     <!-- Card Section -->
     <div class="bg-white rounded-xl shadow dark:bg-slate-900 | max-w-6xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-        <form method="POST" action="{{ route('activities.store') }}">
+        <form method="POST" action="{{ route('activities.store') }}" enctype="multipart/form-data">
             @method('POST')
             @csrf
             <!-- Card -->
@@ -16,7 +16,7 @@
                     <label for="image"
                         class="group p-4 sm:p-7 block cursor-pointer text-center border-2 border-dashed border-gray-200 rounded-lg focus-within:outline-none focus-within:ring-2 focus-within:ring-blue-500 focus-within:ring-offset-2 dark:border-gray-700">
                         {{-- field: image --}}
-                        <input id="image" name="image" type="file" class="sr-only">
+                        <input id="image" name="image" type="file" class="">
                         <svg class="w-10 h-10 mx-auto text-gray-400 dark:text-gray-600" xmlns="http://www.w3.org/2000/svg"
                             width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                             <path fill-rule="evenodd"

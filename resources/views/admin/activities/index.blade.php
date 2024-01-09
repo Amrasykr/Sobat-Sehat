@@ -220,13 +220,13 @@
 
                                 @foreach ($activities as $activity)
                                     <tr class="bg-white hover:bg-gray-50 dark:bg-slate-900 dark:hover:bg-slate-800">
-                                        {{-- title --}}
+                                        {{-- title -- image --}}
                                         <td class="h-px w-px whitespace-nowrap align-top">
                                             <div class="block p-6">
                                                 <div class="flex items-center gap-x-4">
                                                     <div class="image-container | bg-gray-200 h-[2.375rem] w-[2.375rem] rounded-lg overflow-hidden">
                                                         <img class=""
-                                                        src=""
+                                                        src="{{ asset("$activity->image") }}"
                                                         alt="">
                                                     </div>
                                                     <div>

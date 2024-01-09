@@ -31,9 +31,37 @@ class ActivitiesController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+        public function store(Request $request)
     {
-        
+        $request->validate([
+            'title' => 'required|string',
+            'category' => 'required|string',
+            'activity_date' => 'required|date',
+            'location' => 'required|string',
+            'description' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'location_link' => 'nullable|url',
+        ]);
+
+        $imagePath = 'null';
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('activity_images', 'public');
+        }
+
+        // Membuat activity baru
+        Activities::create([
+            'title' => $request->input('title'),
+            'category' => $request->input('category'),
+            'activity_date' => $request->input('activity_date'),
+            'location' => $request->input('location'),
+            'location_link' => $request->input('location_link'),
+            'description' => $request->input('description'),
+            // todo: replace author_id
+            'author_id' => '1',
+            'image' => $imagePath,
+        ]);
+
+        return redirect()->route('activities.index')->with('success', 'Activity created successfully.');
     }
 
     /**
