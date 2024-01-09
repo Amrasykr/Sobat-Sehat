@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
-use PHPUnit\TextUI\Configuration\Php;
+
 
 class ContributorValidationController extends Controller
 {
@@ -16,11 +16,8 @@ class ContributorValidationController extends Controller
         // Menampilkan Data Kontributor
         $contributors = User::where('role', 'kontributor')->get();
     
-        if ($contributors->isEmpty()) {
-            return $this->responseError('There is no  contributor.');
-        } else {
-            return $this->responseSuccess($contributors, 'Successfully displays contributor data', 200);
-        }
+        return view('admin/validation/index', compact('contributors'));
+
     }
     
 
@@ -44,24 +41,28 @@ class ContributorValidationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function updateAccepted(Request $request, $id)
     {
 
 
-        $contributor = User::find($id);
+        $contributors = User::findOrFail($id);
 
-        if (!$contributor) {
-            return $this->responseError('Contributor not found.', 404);
-        }
-
-        $validatedData = $request->validate([
-            'validation' => 'required|in:diterima,ditolak',
-        ]);
-
-        $contributor->validation = $validatedData['validation'];
-        $contributor->save();
+        $contributors->validation = 'diterima';
+        $contributors->save();
     
-        return $this->responseSuccess($contributor, 'Validation column updated successfully.', 200);
+        return redirect()->route('admin.validation');
+    }
+
+    public function updateRejected(Request $request, $id)
+    {
+
+
+        $contributors = User::findOrFail($id);
+
+        $contributors->validation = 'ditolak';
+        $contributors->save();
+    
+        return redirect()->route('admin.validation');
     }
     
 

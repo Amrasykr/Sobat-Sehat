@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\News;
+use Illuminate\Support\Facades\File;
 
 class NewsController extends Controller
 {
@@ -14,11 +15,13 @@ class NewsController extends Controller
     {
         //
         $news = News::all();
-        if ($news->isEmpty()) {
-            return $this->responseError('There are no news.');
-        } else {
-            return $this->responseSuccess($news, 'Successfully displays news data', 200);
-        }
+        return view('admin.news.index', compact('news'));
+    }
+
+    public function create()
+    {
+
+        return view('admin/news/create');
     }
 
     /**
@@ -30,22 +33,39 @@ class NewsController extends Controller
         $user = $request->user();
 
         $validatedData = $request->validate([
-            'title' =>'required',
-            'category' =>'required|in:olahraga,kesehatan',
-            'description' =>'required',
-            'image' =>'required'
+            'title' => 'required',
+            'category' => 'required|in:olahraga,kesehatan',
+            'description' => 'required',
+            'source' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg',
         ]);
-        $validatedData['author_id'] = $user->id; 
 
-        $news = News::create($validatedData);
-
-        if ($news) {
-            return $this->responseSuccess($news, 'News created successfully.', 200);
-        } else {
-            return $this->responseError('Failed to add news.');
+        $validatedData['author_id'] = $user->id;
+    
+        $news = new News([
+            'title' => $validatedData['title'],
+            'category' => $validatedData['category'],
+            'description' => $validatedData['description'],
+            'source' => $validatedData['source'],
+            'author_id' => $validatedData['author_id'],
+        ]);
+    
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $request->file('image')->move('assets/img/news', $request->file('image')->getClientOriginalName());
+            $news->image = $request->file('image')->getClientOriginalName();
         }
+    
+        $news->save();
+  
+        if ($news) {
+            return redirect()->route('admin.news');
+        } else {
 
+            return redirect()->back();
+        }
     }
+
+
 
     /**
      * Display the specified resource.
@@ -61,29 +81,54 @@ class NewsController extends Controller
         }
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
+    public function edit(string $id)
     {
 
         $news = News::find($id);
-    
-        if (!$news) {
-            return $this->responseNotFound('News not found.');
-        }
-
-        $validatedData = $request->validate([
-            'title' =>'required',
-            'category' =>'required|in:olahraga,kesehatan',
-            'description' =>'required',
-            'image' =>'required'
-        ]);
-     
-        $news->update($validatedData);
-    
-        return $this->responseSuccess($news, 'News updated successfully.', 200);
+        return view('admin/news/edit', compact('news'));
     }
+
+    /**
+     * Update the specified resource in storage.
+     */
+
+
+public function update(Request $request, string $id)
+{
+    $news = News::find($id);
+
+    if (!$news) {
+        return $this->responseNotFound('News not found.');
+    }
+
+    $validatedData = $request->validate([
+        'title' => 'required',
+        'category' => 'required|in:olahraga,kesehatan',
+        'description' => 'required',
+        'source' => 'required',
+        'image' => 'image|mimes:jpeg,png,jpg',
+    ]);
+
+    $news->title = $validatedData['title'];
+    $news->category = $validatedData['category'];
+    $news->description = $validatedData['description'];
+    $news->source = $validatedData['source'];
+
+    // Jika ada unggahan gambar baru
+    if ($request->hasFile('image') && $request->file('image')->isValid()) {
+        // Hapus gambar lama sebelum menyimpan yang baru
+        if (File::exists(public_path('assets/img/news/' . $news->image))) {
+            File::delete(public_path('assets/img/news/' . $news->image));
+        }
+        $request->file('image')->move('assets/img/news', $request->file('image')->getClientOriginalName());
+        $news->image = $request->file('image')->getClientOriginalName();
+    }
+
+    $news->save();
+
+    return redirect()->route('admin.news');
+}
+
     
 
     /**
@@ -99,7 +144,7 @@ class NewsController extends Controller
     
         $news->delete();
     
-        return $this->responseSuccess(null, 'News deleted successfully.', 200);
+        return redirect()->route('admin.news');
     }
     
 }

@@ -2,22 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Activities;
 use App\Models\News;
+use Illuminate\Http\Request;
 
-
-class ActivitiesUserController extends Controller
+class UserNewsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-
-
     public function index()
     {
-        $activities = Activities::all();
-        return view ('user.activities.index', compact('activities'));
+
+        $news  =News::all();
+        return view('user.news.index' , compact('news'));
     }
 
     /**
@@ -31,17 +28,10 @@ class ActivitiesUserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show($id)
+    public function show(string $id)
     {
-        $activities = Activities::find($id);
-
-        if ($activities) {
-            return $this->responseSuccess($activities, 'Activities found.', 200);
-        } else {
-            return $this->responseError('Activity not found.');
-        }
-
-        
+        //
+        return view('user.news.show');
     }
 
     /**
@@ -59,6 +49,4 @@ class ActivitiesUserController extends Controller
     {
         //
     }
-
-
 }

@@ -4,12 +4,22 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Activities;
+use Illuminate\Support\Facades\File;
 
 class ActivitiesController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+
+
+    public function indexDashboard() {
+
+        return view('admin/index');
+    }
+
+
+    
     public function index(Request $request)
     {
         $user = $request->user();
@@ -18,48 +28,67 @@ class ActivitiesController extends Controller
         if ($role === 'admin') {
             $activities = Activities::all();
             if ($activities->isEmpty()) {
-                return $this->responseError('There are no activities.');
+                return view('admin.activities.index')->with('error', 'There are no activities.')->with(compact('activities'));
             } else {
-                return $this->responseSuccess($activities, 'Successfully displays activities data', 200);
+                return view('admin.activities.index')->with('success', 'Successfully displays activities data')->with(compact('activities'));
             }
         } elseif ($role === 'kontributor') {
             $activities = Activities::where('author_id', $user->id)->get();
             if ($activities->isEmpty()) {
-                return $this->responseError('There are no activities for this contributor.');
+                return view('admin.activities.index')->with('error', 'There are no activities for this contributor.')->with(compact('activities'));
             } else {
-                return $this->responseSuccess($activities, 'Successfully displays activities data', 200);
+                return view('admin.activities.index')->with('success', 'Successfully displays activities data')->with(compact('activities'));
             }
         } else {
-            return $this->responseUnauthorized('Unauthorized to access this resource.');
+            return view('admin.activities.index')->with('error', 'Unauthorized to access this resource.');
         }
     }
     
+    public function create()
+    {
 
-    /**
-     * Store a newly created resource in storage.
-     */
+        return view('admin/activities/create');
+    }
+    
     public function store(Request $request)
     {
+
         $user = $request->user();
-    
+
         $validatedData = $request->validate([
-            'title' =>'required',
+            'title' => 'required',
             'category' => 'required|in:olahraga,kesehatan',
             'description' => 'required',
             'location' => 'required',
             'location_link' => 'required',
-            'image' => 'required',
-            'activity_date' => 'required|date',
+            'image' => 'required|image|mimes:jpeg,png,jpg',
+            'activity_date' => 'required',
         ]);
 
-        // dd($validatedData);
+        $validatedData['author_id'] = $user->id;
     
-        $activity = Activities::create($validatedData);
+        $activities = new Activities([
+            'title' => $validatedData['title'],
+            'category' => $validatedData['category'],
+            'description' => $validatedData['description'],
+            'location' => $validatedData['location'],
+            'location_link' => $validatedData['location_link'],
+            'activity_date' =>  $validatedData['activity_date'],
+            'author_id' => $validatedData['author_id'],
+        ]);
     
-        if ($activity) {
-            return $this->responseSuccess($activity, 'Activities created successfully.', 200);
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $request->file('image')->move('assets/img/activities', $request->file('image')->getClientOriginalName());
+            $activities->image = $request->file('image')->getClientOriginalName();
+        }
+    
+        $activities->save();
+  
+        if ($activities) {
+            return redirect()->route('admin.activities');
         } else {
-            return $this->responseError('Failed to add Activity.');
+
+            return redirect()->back();
         }
     }
     
@@ -88,38 +117,55 @@ class ActivitiesController extends Controller
     }
 
 
+    public function edit(string $id)
+    {
+
+        $activities = Activities::find($id);
+        return view('admin/activities/edit', compact('activities'));
+    }
+
+
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, string $id)
     {
-        $activity = Activities::find($id);
+        $activities = Activities::find($id);
     
-        if (!$activity) {
-            return $this->responseNotFound('Activity not found.');
+        if (!$activities) {
+            return $this->responseNotFound('News not found.');
         }
     
-        $user = $request->user();
-        $role = $user->role;
+        $validatedData = $request->validate([
+            'title' => 'required',
+            'category' => 'required|in:olahraga,kesehatan',
+            'description' => 'required',
+            'location' => 'required',
+            'location_link' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg',
+            'activity_date' => 'required',
+        ]);
     
-        if ($role === 'admin' || ($role === 'kontributor' && $user->id === $activity->author_id)) {
-            $validatedData = $request->validate([
-                'title' =>'required',
-                'category' => 'required|in:olahraga,kesehatan',
-                'description' => 'required',
-                'location' => 'required',
-                'location_link' => 'required',
-                'image' => 'required',
-                'activity_date' => 'required|date',
-            ]);
+        $activities->title = $validatedData['title'];
+        $activities->category = $validatedData['category'];
+        $activities->description = $validatedData['description'];
+        $activities->location = $validatedData['location'];
+        $activities->location_link = $validatedData['location_link'];
+        $activities->activity_date = $validatedData['activity_date'];
     
-            
-            $activity->update($validatedData);
-    
-            return $this->responseSuccess($activity, 'Activity updated successfully.', 200);
-        } else {
-            return $this->responseUnauthorized('Unauthorized to update this activity.');
+        // Jika ada unggahan gambar baru
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            // Hapus gambar lama sebelum menyimpan yang baru
+            if (File::exists(public_path('assets/img/acti$activities/' . $activities->image))) {
+                File::delete(public_path('assets/img/acti$activities/' . $activities->image));
+            }
+            $request->file('image')->move('assets/img/acti$activities', $request->file('image')->getClientOriginalName());
+            $activities->image = $request->file('image')->getClientOriginalName();
         }
+    
+        $activities->save();
+    
+        return redirect()->route('admin.activities');
     }
     
 
@@ -137,10 +183,11 @@ class ActivitiesController extends Controller
     
         if ($user->role === 'admin' || $user->id === $activity->author_id) {
             $activity->delete();
-            return $this->responseSuccess(null, 'Activity deleted successfully.', 200);
+            return redirect()->route('admin.activities')->with('success', 'Activity deleted successfully.');
         } else {
-            return $this->responseUnauthorized('Unauthorized to delete this activity.');
+            return redirect()->route('admin.activities')->with('error', 'Unauthorized to delete this activity.');
         }
     }
+    
     
 }
