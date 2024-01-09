@@ -33,7 +33,7 @@
                     <x-card-activity day="Senin" photo-url="{{ asset('images/header-1.png') }}" url="/activity/1" />
                     <x-card-activity day="Selasa" photo-url="{{ asset('images/header-2.png') }}" url="/activity/1" />
                     <x-card-activity day="Rabu" photo-url="{{ asset('images/header-3.png') }}" url="/activity/1" />
-                </div>
+                    </div>
             </div>
         </section>
     </main>

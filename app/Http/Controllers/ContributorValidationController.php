@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+
 
 class ContributorValidationController extends Controller
 {
@@ -11,8 +13,13 @@ class ContributorValidationController extends Controller
      */
     public function index()
     {
-        //
+        // Menampilkan Data Kontributor
+        $contributors = User::where('role', 'kontributor')->get();
+    
+        return view('admin/validation/index', compact('contributors'));
+
     }
+    
 
     /**
      * Store a newly created resource in storage.
@@ -21,6 +28,7 @@ class ContributorValidationController extends Controller
     {
         //
     }
+
 
     /**
      * Display the specified resource.
@@ -33,10 +41,30 @@ class ContributorValidationController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function updateAccepted(Request $request, $id)
     {
-        //
+
+
+        $contributors = User::findOrFail($id);
+
+        $contributors->validation = 'diterima';
+        $contributors->save();
+    
+        return redirect()->route('admin.validation');
     }
+
+    public function updateRejected(Request $request, $id)
+    {
+
+
+        $contributors = User::findOrFail($id);
+
+        $contributors->validation = 'ditolak';
+        $contributors->save();
+    
+        return redirect()->route('admin.validation');
+    }
+    
 
     /**
      * Remove the specified resource from storage.
