@@ -3,7 +3,7 @@
 @section('content')
     <!-- Card Section -->
     <div class="bg-white rounded-xl shadow dark:bg-slate-900 | max-w-6xl px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-        <form method="POST" action="{{ route('activities.store') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('admin.activities.store') }}" enctype="multipart/form-data">
             @method('POST')
             @csrf
             <!-- Card -->

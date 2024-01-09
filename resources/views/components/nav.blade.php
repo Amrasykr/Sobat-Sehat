@@ -20,7 +20,7 @@
 
             <div class="flex gap-4 items-center font-bold">
                 <a href="{{ route('index.login') }}" class="btn-primary">LOGIN</a>
-                <a href="#" class="btn-light">DAFTAR</a>
+                <a href="{{ route('index.register') }}" class="btn-light">DAFTAR</a>
             </div>
         </div>
     </div>

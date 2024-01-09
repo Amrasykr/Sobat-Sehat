@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        
+
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
         integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -32,9 +32,8 @@
   }
 
         </style>
-        
-    @vite('resources/css/app.css')
-    @vite('resources/js/app.js')
+
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     </head>
 
   <body style="background-color: #f2f7ff;">
@@ -49,7 +48,7 @@
       <a href="{{ url('/')}}">
       <div class="text-gray-100 text-xl">
         <div class="p-2.5 mt-1 flex items-center">
-            <img src="/img/sobatsehat-vertical.svg" alt="Logo Sobat Sehat" class="h-20 ml-24"> 
+            <img src="/img/sobatsehat-vertical.svg" alt="Logo Sobat Sehat" class="h-20 ml-24">
         </div>
         <div class="my-2 bg-gray-600 h-[1px]"></div>
       </div>
@@ -60,7 +59,7 @@
         <i class="bi bi-house-door-fill"></i>
         <span class="text-[15px]  text-gray-200 font-bold ml-14">{{ Auth::user()->name }}</span>
       </div>
-      <span class="badge badge-ghost badge-sm">{{Auth::user()->role;}}</span>
+      <span class="badge badge-ghost badge-sm">{{Auth::user()->role}}</span>
 
       <div class="my-4 bg-gray-600 h-[1px]"></div>
       <div
@@ -103,12 +102,12 @@
       <a href="{{ route('admin.validation') }}">
           <h1 class="cursor-pointer p-2 hover:bg-blue-600 rounded-md mt-1">
             Kelola Validasi Akun
-          </h1> 
+          </h1>
       </a>
   @endif
-  
+
       </div>
-      
+
       <div
         class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
       >
@@ -117,7 +116,7 @@
             <span class="text-[15px] ml-4 text-gray-200 font-bold"><a href="{{route('logout')}}">Logout</a></span>
       </div>
     </div>
-    
+
 
 
     <div class="flex-1 flex justify-center items-center ml-64 mb-80">
@@ -152,8 +151,8 @@
                                     </div>
                                 </div>
                             </td>
-                            
-                            
+
+
                             <td>{{ $contributor->email}}</td>
                             <td>
                                 <div class="badge badge-primary">{{ $contributor->validation }}</div>
@@ -178,8 +177,8 @@
             </table>
         </div>
     </div>
-    
-    
+
+
 
 
     <script type="text/javascript">

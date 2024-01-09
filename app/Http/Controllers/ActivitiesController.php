@@ -142,7 +142,7 @@ class ActivitiesController extends Controller
             'description' => 'required',
             'location' => 'required',
             'location_link' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg',
+            'image' => 'image|mimes:jpeg,png,jpg',
             'activity_date' => 'required',
         ]);
 

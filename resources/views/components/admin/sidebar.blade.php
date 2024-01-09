@@ -8,8 +8,8 @@
         <nav class="hs-accordion-group p-6 w-full flex flex-col flex-wrap" data-hs-accordion-always-open>
             <ul class="space-y-1.5">
                 <li>
-                    <a class="{{ request()->routeIs("dashboard")? "active": "" }} custom-nav-link"
-                        href="{{ route("dashboard") }}">
+                    <a class="{{ request()->routeIs("admin.dashboard")? "active": "" }} custom-nav-link"
+                        href="{{ route("admin.dashboard") }}">
                         <svg class="flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24"
                             height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                             stroke-linecap="round" stroke-linejoin="round">
@@ -20,7 +20,7 @@
                     </a>
                 </li>
 
-                <li class="{{ request()->routeIs('activities.index', 'activities.create') ? 'active' : '' }} hs-accordion" id="projects-accordion">
+                <li class="{{ request()->routeIs('admin.activities*') ? 'active' : '' }} hs-accordion" id="projects-accordion">
                     <button type="button"
                         class="hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 hs-accordion-active:text-white hs-accordion-active:hover:bg-transparent text-sm text-white hover:text-white rounded-lg hover:bg-cyan-600">
                         <svg class="flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24"
@@ -55,17 +55,17 @@
                     </button>
 
                     <div id="projects-accordion-child"
-                        class="{{ request()->routeIs("activities.index", "activities.create") ? "" : "hidden" }} hs-accordion-content w-full overflow-hidden transition-[height] duration-300">
+                        class="{{ request()->routeIs("admin.activities*") ? "" : "hidden" }} hs-accordion-content w-full overflow-hidden transition-[height] duration-300">
                         <ul class="pt-2 ps-2">
                             <li>
-                                <a class="{{ request()->routeIs("activities.index")? "active": "" }} custom-nav-link"
-                                    href="{{ route("activities.index") }}">
+                                <a class="{{ request()->routeIs("admin.activities")? "active": "" }} custom-nav-link"
+                                    href="{{ route("admin.activities") }}">
                                     Semua Berita
                                 </a>
                             </li>
                             <li>
-                                <a class="{{ request()->routeIs("activities.create")? "active": "" }} custom-nav-link"
-                                    href="{{ route("activities.create") }}">
+                                <a class="{{ request()->routeIs("admin.activities.create")? "active": "" }} custom-nav-link"
+                                    href="{{ route("admin.activities.create") }}">
                                     Tambah Berita
                                 </a>
                             </li>
@@ -74,7 +74,7 @@
                 </li>
 
                 <li><a class="w-full custom-nav-link"
-                        href="#">
+                        href="{{ route('admin.validation') }}">
                         <svg class="flex-shrink-0 mt-0.5 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24"
                             height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">

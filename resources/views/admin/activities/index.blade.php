@@ -224,10 +224,11 @@
                                         <td class="h-px w-px whitespace-nowrap align-top">
                                             <div class="block p-6">
                                                 <div class="flex items-center gap-x-4">
-                                                    <div class="image-container | bg-gray-200 h-[2.375rem] w-[2.375rem] rounded-lg overflow-hidden">
+                                                    <div
+                                                        class="image-container | bg-gray-200 h-[2.375rem] w-20 ring-2 ring-offset-2 ring-gray-200 rounded-lg overflow-hidden">
                                                         <img class=""
-                                                        src="{{ asset("$activity->image") }}"
-                                                        alt="">
+                                                            src="{{ asset("assets/img/activities/$activity->image") }}"
+                                                            alt="">
                                                     </div>
                                                     <div>
                                                         <span
@@ -278,7 +279,7 @@
                                         <td class="h-px w-px whitespace-nowrap align-top">
                                             <div class="block p-6">
                                                 {{-- edit button --}}
-                                                <a href="" {{-- todo: edit route --}}
+                                                <a href="{{ route('admin.activities.edit', ['id'=> $activity->id]) }}"
                                                     class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-yellow-100 fill-yellow-500 text-yellow-500  hover:bg-yellow-500 hover:text-white hover:fill-white disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
                                                     <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg"
                                                         id="Outline" viewBox="0 0 24 24" width="512"
@@ -337,10 +338,15 @@
                                                                     data-hs-overlay="#hs-basic-modal">
                                                                     Batal
                                                                 </button>
-                                                                <a href="#" {{-- todo: delete route --}}
-                                                                    class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-red-600 text-white hover:bg-red-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
-                                                                    Hapus
-                                                                </a>
+                                                                <form action="{{ route('admin.activities.delete', ['id' => $activity->id]) }}" method="POST">
+                                                                    @csrf
+                                                                    @method('DELETE')
+
+                                                                    <button type="submit" class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-red-600 text-white hover:bg-red-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                                                                        Hapus
+                                                                    </button>
+                                                                </form>
+
                                                             </div>
                                                         </div>
                                                     </div>
