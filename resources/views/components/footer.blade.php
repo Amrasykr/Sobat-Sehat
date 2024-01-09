@@ -22,10 +22,10 @@
             <div class="flex gap-8 flex-1 items-center justify-around max-lg:justify-start">
                 <nav class="">
                     <ul class="flex gap-1 flex-col w-fit">
-                        <li class="p-1 font-bold"><a class="hover:underline" href="{{ route('home') }}">Beranda</a></li>
-                        <li class="p-1 font-bold"><a class="hover:underline" href="{{ route('home') }}">Kegiatan</a></li>
-                        <li class="p-1 font-bold"><a class="hover:underline" href="{{ route('home') }}">Berita</a></li>
-                        <li class="p-1 font-bold"><a class="hover:underline" href="{{ route('home') }}">Tentang Kami</a></li>
+                        <li class="p-1 font-bold"><a class="hover:underline" href="{{ route('homepage') }}">Beranda</a></li>
+                        <li class="p-1 font-bold"><a class="hover:underline" href="{{ route('homepage') }}">Kegiatan</a></li>
+                        <li class="p-1 font-bold"><a class="hover:underline" href="{{ route('homepage') }}">Berita</a></li>
+                        <li class="p-1 font-bold"><a class="hover:underline" href="{{ route('homepage') }}">Tentang Kami</a></li>
                     </ul>
                 </nav>
 

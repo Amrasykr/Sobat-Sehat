@@ -24,7 +24,7 @@ export default {
                     "secondary": "#4ADE80",
                 }
             },
-            "light", "dark", "cupcake",
+            "light", "dark", "cupcake", "winter"
         ],
     },
 

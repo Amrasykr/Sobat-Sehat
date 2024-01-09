@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Models\Activities;
 use Illuminate\Http\Request;
-use App\Models\Activities;
 use Illuminate\Support\Facades\File;
 
 class ActivitiesController extends Controller
