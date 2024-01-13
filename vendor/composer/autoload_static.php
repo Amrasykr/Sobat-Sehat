@@ -355,8 +355,8 @@ class ComposerStaticInitf4c2a97449458cdafb4c9c04ef234cf6
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-factory/src',
-            1 => __DIR__ . '/..' . '/psr/http-message/src',
+            0 => __DIR__ . '/..' . '/psr/http-message/src',
+            1 => __DIR__ . '/..' . '/psr/http-factory/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -543,6 +543,8 @@ class ComposerStaticInitf4c2a97449458cdafb4c9c04ef234cf6
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\NewsController' => __DIR__ . '/../..' . '/app/Http/Controllers/NewsController.php',
         'App\\Http\\Controllers\\NewsUserController' => __DIR__ . '/../..' . '/app/Http/Controllers/NewsUserController.php',
+        'App\\Http\\Controllers\\UserActivitiesController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserActivitiesController.php',
+        'App\\Http\\Controllers\\UserNewsController' => __DIR__ . '/../..' . '/app/Http/Controllers/UserNewsController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
         'App\\Http\\Middleware\\AdminRoleMiddleware' => __DIR__ . '/../..' . '/app/Http/Middleware/AdminRoleMiddleware.php',
         'App\\Http\\Middleware\\Authenticate' => __DIR__ . '/../..' . '/app/Http/Middleware/Authenticate.php',

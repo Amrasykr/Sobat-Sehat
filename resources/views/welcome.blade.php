@@ -5,12 +5,12 @@
         <div id="hero" class="py-4 max-w-5xl container mx-auto mb-16">
             <div class="">
                 <h1 class="font-bold text-6xl">
-                    <span class="text-blue-400">SOBAT</span>
+                    <span class="text-cyan-500 ">SOBAT</span>
                     <br>
                     <span class="text-green-400 ml-10 ">SEHAT</span>
                 </h1>
                 <p
-                    class="text-blue-400 max-w-md border-b-2 border-current py-4 px-4 my-8 backdrop-blur-sm bg-white/80
+                    class="text-cyan-500  max-w-md border-b-2 border-current py-4 px-4 my-8 backdrop-blur-sm bg-white/80
                     rounded-tl-xl rounded-br-xl">
                     Sobat Sehat, teman setia dalam menjelajahi dunia kesehatan dan olahraga, memberikan peluang untuk
                     menemukan
@@ -26,7 +26,7 @@
         <section class="py-8 bg-white/50 backdrop-blur-sm ">
             <div class="max-w-5xl container mx-auto">
                 <h3 class="text-cyan-500 font-bold uppercase text-3xl text-center mb-10">Berita dan kegiatan</h3>
-                <p class="text-blue-400 text-center text-lg mb-4">Temukan Kegiatan, Berita dan Informasi <br> yang
+                <p class="text-cyan-500  text-center text-lg mb-4">Temukan Kegiatan, Berita dan Informasi <br> yang
                     sesuai
                     dengan diri anda</p>
                 <div class="flex gap-16 mt-10">

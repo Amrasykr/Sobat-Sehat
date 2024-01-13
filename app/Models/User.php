@@ -54,6 +54,6 @@ class User extends Authenticatable
     }
 
     public function activities(){
-        return $this->hasMany(Comment::class, 'author_id' );
+        return $this->hasMany(Activities::class, 'author_id' );
     }
 }

@@ -15,6 +15,8 @@ return array(
     'App\\Http\\Controllers\\Controller' => $baseDir . '/app/Http/Controllers/Controller.php',
     'App\\Http\\Controllers\\NewsController' => $baseDir . '/app/Http/Controllers/NewsController.php',
     'App\\Http\\Controllers\\NewsUserController' => $baseDir . '/app/Http/Controllers/NewsUserController.php',
+    'App\\Http\\Controllers\\UserActivitiesController' => $baseDir . '/app/Http/Controllers/UserActivitiesController.php',
+    'App\\Http\\Controllers\\UserNewsController' => $baseDir . '/app/Http/Controllers/UserNewsController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
     'App\\Http\\Middleware\\AdminRoleMiddleware' => $baseDir . '/app/Http/Middleware/AdminRoleMiddleware.php',
     'App\\Http\\Middleware\\Authenticate' => $baseDir . '/app/Http/Middleware/Authenticate.php',

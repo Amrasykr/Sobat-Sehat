@@ -21,7 +21,7 @@ class News extends Model
         'updated_at',
     ];
     
-    public function author(){
+    public function user(){
         return $this->belongsTo(User::class, 'author_id');
     }
 }
