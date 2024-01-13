@@ -28,8 +28,8 @@
     <div class="max-w-screen-lg mx-auto">
         <ul class="flex w-fit gap-8 px-8  | text-cyan-500 font-bold">
             <li class="p-2"><a class="hover:underline" href="{{ route('homepage') }}">Beranda</a></li>
-            <li class="p-2"><a class="hover:underline" href="{{ route('homepage') }}">Kegiatan</a></li>
-            <li class="p-2"><a class="hover:underline" href="{{ route('homepage') }}">Berita</a></li>
+            <li class="p-2"><a class="hover:underline" href="{{ route('user.activities') }}">Kegiatan</a></li>
+            <li class="p-2"><a class="hover:underline" href="{{ route('user.news') }}">Berita</a></li>
             <li class="p-2"><a class="hover:underline" href="{{ route('homepage') }}">Tentang Kami</a></li>
         </ul>
     </div>

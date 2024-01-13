@@ -34,10 +34,11 @@ Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 
-Route::get('/user/activities', [UserActivitiesController::class, 'index'])->name('user.activities');
-Route::get('/user/activities/show/{id}', [UserActivitiesController::class, 'show'])->name('user.activities.show');
-Route::get('/user/news', [UserNewsController::class, 'index'])->name('user.news');
-Route::get('/user/news/show/{id}', [UserNewsController::class, 'show'])->name('user.news.show');
+Route::get('/activities', [UserActivitiesController::class, 'index'])->name('user.activities');
+Route::get('/activities/show/{id}', [UserActivitiesController::class, 'show'])->name('user.activities.show');
+// todo: news is shown as activities
+Route::get('/news', [UserActivitiesController::class, 'index'])->name('user.news');
+Route::get('/news/show/{id}', [UserActivitiesController::class, 'show'])->name('user.news.show');
 
 
 
@@ -47,6 +48,7 @@ Route::get('/user/news/show/{id}', [UserNewsController::class, 'show'])->name('u
 
 Route::middleware(['auth:sanctum'])->group(function () {
 
+    Route::get('/admin', [ActivitiesController::class, 'indexDashboard'])->name('admin.dashboard');
     Route::get('/admin/dashboard', [ActivitiesController::class, 'indexDashboard'])->name('admin.dashboard');
 
 

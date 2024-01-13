@@ -50,7 +50,7 @@
                             <input id="title" name="title" type="text"
                                 class="py-2 px-3 pe-11 block w-full border-2 border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
                                 placeholder="Enter nama Berita"
-                                
+
                                 >
                         </div>
 
@@ -79,9 +79,33 @@
                                 </label>
                                 <input type="date" id="created_at" name="created_at"
                                     class="py-2 px-3 block w-full border-2 border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
-                                   
+
                                     >
                             </div>
+                        @enderror
+                    </div>
+
+                    <div class="form-control w-full">
+                        <label class="label">
+                            <span class="label-text text-base-content">Deskripsi</span>
+                        </label>
+                        <input type="text" placeholder="Deskripsi" class="input input-bordered w-full" name="description" >
+                        @error('description')
+                            <div class="label">
+                                <span class="label-text-alt text-error">{{ $message }}</span>
+                            </div>
+                        @enderror
+                    </div>
+                    <div class="form-control w-full">
+                        <label class="label">
+                            <span class="label-text text-base-content">Source</span>
+                        </label>
+                        <input type="text" placeholder="source" class="input input-bordered w-full" name="source">
+                        @error('source')
+                            <div class="label">
+                                <span class="label-text-alt text-error">{{ $message }}</span>
+                            </div>
+                        @enderror
                         </div>
 
                         {{-- field: Source --}}
@@ -94,7 +118,7 @@
                             <input id="source" type="text" name="source"
                                 class="py-2 px-3 pe-11 block w-full border-2 border-gray-200 shadow-sm text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
                                 placeholder="Masukan sumber berita"
-                              
+
                                 >
                         </div>
 
@@ -119,9 +143,37 @@
                         </button>
                     </div>
                 </div>
+                <div class="divider"></div>
+                <div class="mt-16">
+                    <button type="submit" class="btn btn-primary float-right">Buat</button>
+                </div>
+            </form>
+
+        </div>
             </div>
             <!-- End Card -->
         </form>
     </div>
+
+
+
+
+
+
+
+
+    <script type="text/javascript">
+      function dropdown() {
+        document.querySelector("#submenu").classList.toggle("hidden");
+        document.querySelector("#arrow").classList.toggle("rotate-0");
+      }
+      dropdown();
+
+      function openSidebar() {
+        document.querySelector(".sidebar").classList.toggle("hidden");
+      }
+    </script>
+  </body>
+</html>
     <!-- End Card Section -->
 @endsection

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Activities;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -14,8 +15,17 @@ class ActivitiesController extends Controller
 
 
     public function indexDashboard() {
+        $activities = Activities::all();
+        $contributors = User::where('role', 'kontributor')->get();
+        $accepted_contributors = User::where('role', 'kontributor')->where('validation', 'diterima')->get();
+        $rejected_contributors = User::where('role', 'kontributor')->where('validation', 'ditolak')->get();
 
-        return view('admin/index');
+        return view('admin/index', compact(
+            'activities', 
+            'contributors', 
+            'accepted_contributors', 
+            'rejected_contributors'
+        ));
     }
 
 
@@ -187,6 +197,8 @@ class ActivitiesController extends Controller
         } else {
             return redirect()->route('admin.activities')->with('error', 'Unauthorized to delete this activity.');
         }
+
+        // TODO: delte image from public storage
     }
 
 

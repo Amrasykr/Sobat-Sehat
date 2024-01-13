@@ -15,11 +15,11 @@ class ContributorValidationController extends Controller
     {
         // Menampilkan Data Kontributor
         $contributors = User::where('role', 'kontributor')->get();
-    
+
         return view('admin/validation/index', compact('contributors'));
 
     }
-    
+
 
     /**
      * Store a newly created resource in storage.
@@ -45,11 +45,13 @@ class ContributorValidationController extends Controller
     {
 
 
-        $contributors = User::findOrFail($id);
+        $contributor = User::findOrFail($id);
 
-        $contributors->validation = 'diterima';
-        $contributors->save();
-    
+        $contributor->validation = 'diterima';
+        $contributor->save();
+
+        dd($contributor);
+
         return redirect()->route('admin.validation');
     }
 
@@ -57,14 +59,14 @@ class ContributorValidationController extends Controller
     {
 
 
-        $contributors = User::findOrFail($id);
+        $contributor = User::findOrFail($id);
 
-        $contributors->validation = 'ditolak';
-        $contributors->save();
-    
+        $contributor->validation = 'ditolak';
+        $contributor->save();
+
         return redirect()->route('admin.validation');
     }
-    
+
 
     /**
      * Remove the specified resource from storage.
