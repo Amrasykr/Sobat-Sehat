@@ -15,12 +15,13 @@ class News extends Model
         'category',
         'image',
         'description',
+        'source',
         'author_id',
         'source',
         'created_at',
         'updated_at',
     ];
-    
+
     public function user(){
         return $this->belongsTo(User::class, 'author_id');
     }

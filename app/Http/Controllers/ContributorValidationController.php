@@ -50,8 +50,6 @@ class ContributorValidationController extends Controller
         $contributor->validation = 'diterima';
         $contributor->save();
 
-        dd($contributor);
-
         return redirect()->route('admin.validation');
     }
 

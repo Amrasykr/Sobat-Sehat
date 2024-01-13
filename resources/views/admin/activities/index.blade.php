@@ -290,7 +290,7 @@
                                                     <span class="hidden lg:inline">Edit</span>
                                                 </a>
                                                 {{-- delete button --}}
-                                                <button type="button" data-hs-overlay="#delete-modal"
+                                                <button type="button" data-hs-overlay="#delete-modal{{ $activity->id }}"
                                                     class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-red-100 fill-red-500 text-red-500  hover:bg-red-500 hover:text-white hover:fill-white disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
                                                     <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg"
                                                         id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24">
@@ -300,7 +300,7 @@
                                                     <span class="hidden lg:inline">Delete</span>
                                                 </button>
                                                 {{-- modal --}}
-                                                <div id="delete-modal"
+                                                <div id="delete-modal{{ $activity->id }}"
                                                     class="hs-overlay hs-overlay-open:opacity-100 hs-overlay-open:duration-500 hidden w-full h-full fixed top-0 start-0 z-[80] opacity-0 overflow-x-hidden transition-all overflow-y-auto pointer-events-none">
                                                     <div
                                                         class="hs-overlay-open:opacity-100 hs-overlay-open:duration-500 opacity-0 transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto">
@@ -313,7 +313,7 @@
                                                                 </h3>
                                                                 <button type="button"
                                                                     class="flex justify-center items-center w-7 h-7 text-sm font-semibold rounded-full border border-transparent text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-gray-700 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                                                                    data-hs-overlay="#hs-basic-modal">
+                                                                    data-hs-overlay="#delete-modal{{ $activity->id }}">
                                                                     <span class="sr-only">Tutup</span>
                                                                     <svg class="flex-shrink-0 w-4 h-4"
                                                                         xmlns="http://www.w3.org/2000/svg" width="24"
@@ -335,7 +335,7 @@
                                                                 class="flex justify-end items-center gap-x-2 py-3 px-4 border-t dark:border-gray-700">
                                                                 <button type="button"
                                                                     class="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-white dark:hover:bg-gray-800 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                                                                    data-hs-overlay="#hs-basic-modal">
+                                                                    data-hs-overlay="#delete-modal{{ $activity->id }}">
                                                                     Batal
                                                                 </button>
                                                                 <form action="{{ route('admin.activities.delete', ['id' => $activity->id]) }}" method="POST">

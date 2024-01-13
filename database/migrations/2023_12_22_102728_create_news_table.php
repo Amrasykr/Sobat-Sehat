@@ -20,6 +20,7 @@ return new class extends Migration
             );
             $table->string('image')->default('news.jpg');
             $table->longtext('description');
+            $table->string('source');
             $table->unsignedBigInteger('author_id');
             $table->foreign('author_id')->references('id')->on('users');
             $table->timestamps();

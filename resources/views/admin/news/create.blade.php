@@ -49,9 +49,7 @@
 
                             <input id="title" name="title" type="text"
                                 class="py-2 px-3 pe-11 block w-full border-2 border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
-                                placeholder="Enter nama Berita"
-
-                                >
+                                placeholder="Enter nama Berita">
                         </div>
 
                         <div class="grid sm:grid-cols-2 gap-4">
@@ -65,9 +63,9 @@
                                 </label>
                                 <select id="category" name="category"
                                     class="py-2 px-3 pe-9 block w-full border-2 border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
-                                    <option >Pilih kategori</option>
-                                    <option  value="kesehatan">Kesehatan</option>
-                                    <option  value="olahraga">Olahraga</option>
+                                    <option>Pilih kategori</option>
+                                    <option value="kesehatan">Kesehatan</option>
+                                    <option value="olahraga">Olahraga</option>
                                 </select>
                             </div>
 
@@ -78,102 +76,49 @@
                                     Tanggal Kegiatan
                                 </label>
                                 <input type="date" id="created_at" name="created_at"
-                                    class="py-2 px-3 block w-full border-2 border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
-
-                                    >
+                                    class="py-2 px-3 block w-full border-2 border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
                             </div>
-                        @enderror
-                    </div>
-
-                    <div class="form-control w-full">
-                        <label class="label">
-                            <span class="label-text text-base-content">Deskripsi</span>
-                        </label>
-                        <input type="text" placeholder="Deskripsi" class="input input-bordered w-full" name="description" >
-                        @error('description')
-                            <div class="label">
-                                <span class="label-text-alt text-error">{{ $message }}</span>
-                            </div>
-                        @enderror
-                    </div>
-                    <div class="form-control w-full">
-                        <label class="label">
-                            <span class="label-text text-base-content">Source</span>
-                        </label>
-                        <input type="text" placeholder="source" class="input input-bordered w-full" name="source">
-                        @error('source')
-                            <div class="label">
-                                <span class="label-text-alt text-error">{{ $message }}</span>
-                            </div>
-                        @enderror
+                            @error('news_date')
+                                <div class="label">
+                                    <span class="label-text-alt text-error">{{ $message }}</span>
+                                </div>
+                            @enderror
                         </div>
 
-                        {{-- field: Source --}}
-                        <div class="space-y-2">
-                            <label for="source"
-                                class="inline-block text-sm font-medium text-gray-800 mt-2.5 dark:text-gray-200">
-                                Sumber Berita
+                        <div class="form-control w-full">
+                            <label class="label">
+                                <span class="label-text text-base-content">Deskripsi</span>
                             </label>
-
-                            <input id="source" type="text" name="source"
-                                class="py-2 px-3 pe-11 block w-full border-2 border-gray-200 shadow-sm text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
-                                placeholder="Masukan sumber berita"
-
-                                >
+                            <input type="text" placeholder="Deskripsi" class="input input-bordered w-full"
+                                name="description">
+                            @error('description')
+                                <div class="label">
+                                    <span class="label-text-alt text-error">{{ $message }}</span>
+                                </div>
+                            @enderror
                         </div>
-
-
-                        {{-- field: description --}}
-                        <div class="space-y-2">
-                            <label for="description"
-                                class="inline-block text-sm font-medium text-gray-800 mt-2.5 dark:text-gray-200">
-                                Deskripsi
+                        <div class="form-control w-full">
+                            <label class="label">
+                                <span class="label-text text-base-content">Source</span>
                             </label>
-                            <textarea id="description" name="description"
-                                class="py-2 px-3 block w-full border-2 border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600"
-                                rows="6" placeholder="Masukan deskripsi kegiatan"></textarea>
+                            <input type="text" placeholder="source" class="input input-bordered w-full" name="source">
+                            @error('source')
+                                <div class="label">
+                                    <span class="label-text-alt text-error">{{ $message }}</span>
+                                </div>
+                            @enderror
                         </div>
-                    </div>
-                    <!-- End Grid -->
+                        <!-- End Grid -->
 
-                    <div class="mt-5 flex justify-center gap-x-2">
-                        <button type="submit"
-                            class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
-                            Buat Berita
-                        </button>
+                        <div class="mt-5 flex justify-center gap-x-2">
+                            <button type="submit"
+                                class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                                Buat Berita
+                            </button>
+                        </div>
                     </div>
                 </div>
-                <div class="divider"></div>
-                <div class="mt-16">
-                    <button type="submit" class="btn btn-primary float-right">Buat</button>
-                </div>
-            </form>
-
-        </div>
             </div>
-            <!-- End Card -->
         </form>
     </div>
-
-
-
-
-
-
-
-
-    <script type="text/javascript">
-      function dropdown() {
-        document.querySelector("#submenu").classList.toggle("hidden");
-        document.querySelector("#arrow").classList.toggle("rotate-0");
-      }
-      dropdown();
-
-      function openSidebar() {
-        document.querySelector(".sidebar").classList.toggle("hidden");
-      }
-    </script>
-  </body>
-</html>
-    <!-- End Card Section -->
 @endsection

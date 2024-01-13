@@ -21,9 +21,9 @@ class ActivitiesController extends Controller
         $rejected_contributors = User::where('role', 'kontributor')->where('validation', 'ditolak')->get();
 
         return view('admin/index', compact(
-            'activities', 
-            'contributors', 
-            'accepted_contributors', 
+            'activities',
+            'contributors',
+            'accepted_contributors',
             'rejected_contributors'
         ));
     }
@@ -166,10 +166,10 @@ class ActivitiesController extends Controller
         // Jika ada unggahan gambar baru
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             // Hapus gambar lama sebelum menyimpan yang baru
-            if (File::exists(public_path('assets/img/acti$activities/' . $activities->image))) {
-                File::delete(public_path('assets/img/acti$activities/' . $activities->image));
+            if (File::exists(public_path('assets/img/activities/' . $activities->image))) {
+                File::delete(public_path('assets/img/activities/' . $activities->image));
             }
-            $request->file('image')->move('assets/img/acti$activities', $request->file('image')->getClientOriginalName());
+            $request->file('image')->move('assets/img/activities', $request->file('image')->getClientOriginalName());
             $activities->image = $request->file('image')->getClientOriginalName();
         }
 
