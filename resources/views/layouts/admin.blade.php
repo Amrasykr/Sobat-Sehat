@@ -65,71 +65,46 @@
                 <div class="flex flex-row items-center justify-end gap-2">
 
                     {{-- todo: nama pengguna --}}
-                    user.name
+                    <span class="text-white">{{ auth()->user()->name }}</span>
 
                     <div class="hs-dropdown relative inline-flex" data-hs-dropdown-placement="bottom-right">
                         <button id="hs-dropdown-with-header" type="button"
-                            class="w-[2.375rem] h-[2.375rem] inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent text-white hover:bg-white/20 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:ring-1 focus:ring-gray-600">
-                            <img class="inline-block h-[2.375rem] w-[2.375rem] rounded-full"
-                                src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80"
-                                alt="Image Description">
-                        </button>
-
+                        class="w-[2.375rem] h-[2.375rem] inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent text-white hover:bg-white/20 disabled:opacity-50 disabled:pointer-events-none focus:outline-none focus:ring-1 focus:ring-gray-600">
+                        <img class="inline-block h-[2.375rem] w-[2.375rem] rounded-full"
+                            src="{{ asset('img/user.png') }}"
+                            alt="User Image Description">
+                    </button>
                         <div class="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden min-w-[15rem] z-10 bg-white shadow-md rounded-lg p-2 dark:bg-gray-800 dark:border dark:border-gray-700"
                             aria-labelledby="hs-dropdown-with-header">
                             <div class="py-3 px-5 -m-2 bg-gray-100 rounded-t-lg dark:bg-gray-700">
-                                <p class="text-sm text-gray-500 dark:text-gray-400">Signed in as</p>
+                                <p class="text-sm text-gray-500 dark:text-gray-400">{{ auth()->user()->role }}</p>
                                 {{-- todo show logged in user --}}
-                                <p class="text-sm font-medium text-gray-800 dark:text-gray-300">james@site.com</p>
+                                <p class="text-sm font-medium text-gray-800 dark:text-gray-300">{{ auth()->user()->name }}</p>
                             </div>
                             <div class="mt-2 py-2 first:pt-0 last:pb-0">
                                 <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                                    href="#">
-                                    <svg class="flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg" width="24"
-                                        height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9" />
-                                        <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
+                                    href="{{route('homepage')}}">
+                                    <svg class="h-8 w-8 text-black ml-1" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                                        <g id="SVGRepo_iconCarrier">
+                                            <path d="M2 12.2039C2 9.91549 2 8.77128 2.5192 7.82274C3.0384 6.87421 3.98695 6.28551 5.88403 5.10813L7.88403 3.86687C9.88939 2.62229 10.8921 2 12 2C13.1079 2 14.1106 2.62229 16.116 3.86687L18.116 5.10812C20.0131 6.28551 20.9616 6.87421 21.4808 7.82274C22 8.77128 22 9.91549 22 12.2039V13.725C22 17.6258 22 19.5763 20.8284 20.7881C19.6569 22 17.7712 22 14 22H10C6.22876 22 4.34315 22 3.17157 20.7881C2 19.5763 2 17.6258 2 13.725V12.2039Z" stroke="#1C274C" stroke-width="1.5"></path>
+                                            <path d="M15 18H9" stroke="#1C274C" stroke-width="1.5" stroke-linecap="round"></path>
+                                        </g>
                                     </svg>
-                                    Newsletter
+                                     Home Page
                                 </a>
-                                <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                                    href="#">
-                                    <svg class="flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg"
-                                        width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
-                                        <path d="M3 6h18" />
-                                        <path d="M16 10a4 4 0 0 1-8 0" />
-                                    </svg>
-                                    Purchases
-                                </a>
-                                <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                                    href="#">
-                                    <svg class="flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg"
-                                        width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242" />
-                                        <path d="M12 12v9" />
-                                        <path d="m8 17 4 4 4-4" />
-                                    </svg>
-                                    Downloads
-                                </a>
-                                <a class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600"
-                                    href="#">
-                                    <svg class="flex-shrink-0 w-4 h-4" xmlns="http://www.w3.org/2000/svg"
-                                        width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round">
-                                        <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
-                                        <circle cx="9" cy="7" r="4" />
-                                        <path d="M22 21v-2a4 4 0 0 0-3-3.87" />
-                                        <path d="M16 3.13a4 4 0 0 1 0 7.75" />
-                                    </svg>
-                                    Team Account
-                                </a>
+                                <form method="POST" action="{{ route('logout') }}">
+                                    @csrf
+                                    <button type="submit" class="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-gray-300 dark:focus:outline-none dark:focus:ring-1 dark:focus:ring-gray-600">
+                                        <svg class="h-8 w-8 text-red-500" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                            <path stroke="none" d="M0 0h24v24H0z"/>
+                                            <path d="M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2" />
+                                            <path d="M7 12h14l-3 -3m0 6l3 -3" />
+                                        </svg>
+                                        Logout
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </div>

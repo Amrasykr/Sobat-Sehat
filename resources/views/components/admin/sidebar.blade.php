@@ -75,6 +75,7 @@
             </li>
 
             <!-- News Accordion -->
+            @if(auth()->check() && auth()->user()->role === 'admin')
             <li class="{{ request()->routeIs('admin.news*') ? 'active' : '' }} hs-accordion" id="news-accordion">
                 <button type="button"
                     class="hs-accordion-toggle w-full text-start flex items-center gap-x-3.5 py-2 px-2.5 hs-accordion-active:text-white hs-accordion-active:hover:bg-transparent text-sm text-white hover:text-white rounded-lg hover:bg-cyan-600">
@@ -148,6 +149,7 @@
                     Kelola Kontributor
                 </a>
             </li>
+            @endif
         </ul>
     </nav>
 </div>

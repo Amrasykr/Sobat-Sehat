@@ -29,7 +29,7 @@ Route::post('/user/login/post', [AuthController::class, 'login'])->name('login')
 Route::get('/user/register', [AuthController::class, 'indexRegister'])->name('index.register');
 Route::post('/user/register/post', [AuthController::class, 'register'])->name('register');
 
-Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 
 

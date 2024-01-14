@@ -18,11 +18,47 @@
                 </a>
             </div>
 
-            {{-- todo: tambahkan profile user ketiga setelah login --}}
+            @auth <!-- Check if the user is logged in -->
+            @php
+                $user = auth()->user();
+            @endphp
+        
+            <div class="dropdown dropdown-end">
+                <div tabindex="0" role="button" class="btn btn-ghost btn-circle avatar">
+                    <div class="w-16 rounded-full">
+                        <img alt="User Avatar" src="{{ asset("img/user.png") }}" />
+                    </div>
+                </div>
+                <ul tabindex="0" class="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
+                    <li>
+                        <a class="justify-between">
+                            {{ $user->name }}
+                            <span class="badge">{{ $user->role }}</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin.dashboard') }}">
+                            Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit">
+                            Logout
+                            </button>
+                        </form>
+                    </li>                
+                </ul>
+            </div>
+        @else
             <div class="flex gap-4 items-center font-bold">
                 <a href="{{ route('index.login') }}" class="btn-primary">LOGIN</a>
                 <a href="{{ route('index.register') }}" class="btn-light">DAFTAR</a>
             </div>
+        @endauth
+        
+
         </div>
     </div>
 

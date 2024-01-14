@@ -34,25 +34,29 @@ class ActivitiesController extends Controller
     {
         $user = $request->user();
         $role = $user->role;
-
+    
         if ($role === 'admin') {
-            $activities = Activities::all();
-            if ($activities->isEmpty()) {
-                return view('admin.activities.index')->with('error', 'There are no activities.')->with(compact('activities'));
-            } else {
-                return view('admin.activities.index')->with('success', 'Successfully displays activities data')->with(compact('activities'));
-            }
+            $query = Activities::query();
         } elseif ($role === 'kontributor') {
-            $activities = Activities::where('author_id', $user->id)->get();
-            if ($activities->isEmpty()) {
-                return view('admin.activities.index')->with('error', 'There are no activities for this contributor.')->with(compact('activities'));
-            } else {
-                return view('admin.activities.index')->with('success', 'Successfully displays activities data')->with(compact('activities'));
-            }
+            $query = Activities::where('author_id', $user->id);
         } else {
             return view('admin.activities.index')->with('error', 'Unauthorized to access this resource.');
         }
+    
+        $search = $request->input('search');
+        if ($search) {
+            $query->where('title', 'like', '%' . $search . '%');
+        }
+    
+        $activities = $query->get();
+    
+        if ($activities->isEmpty()) {
+            return view('admin.activities.index')->with('error', 'There are no activities.')->with(compact('activities'));
+        } else {
+            return view('admin.activities.index')->with('success', 'Successfully displays activities data')->with(compact('activities'));
+        }
     }
+    
 
     public function create()
     {

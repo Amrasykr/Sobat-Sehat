@@ -13,8 +13,16 @@ class NewsController extends Controller
      */
     public function index()
     {
-        //
-        $news = News::all();
+        $search = request('search');
+
+        $news  = News::query();
+    
+        if ($search) {
+            $news->where('title', 'like', '%' . $search . '%');
+        }
+    
+        $news =  $news->get();
+    
         return view('admin.news.index', compact('news'));
     }
 
