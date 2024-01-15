@@ -131,12 +131,12 @@
                     <span style="color: #11B621;">Sehat!</span>
                 </h1>
                 <p class="mb-5 text-xl">Temukan informasi terbaru seputar kesehatan dan olahraga dalam satu genggaman.</p>
-                <button class="btn" style="background-color: #2BA6CC;">Mulai Membaca Berita!</button>
+                <a href="#main-section" class="btn" style="background-color: #2BA6CC;">Mulai Membaca Berita!</a>
               </div>
             </div>
           </div>
 
-          <div class="flex flex-wrap justify-center gap-4 py-10">
+          <div id="main-section" class="flex flex-wrap justify-center gap-4 py-10">
             <!-- Card 1 -->
             @foreach ($news as $new)
             <a href="#">

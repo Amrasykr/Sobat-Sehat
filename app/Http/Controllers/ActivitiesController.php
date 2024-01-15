@@ -60,7 +60,6 @@ class ActivitiesController extends Controller
 
     public function create()
     {
-
         return view('admin/activities/create');
     }
 

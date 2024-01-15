@@ -6,6 +6,7 @@ use Symfony\Component\Routing\Annotation\Route as AnnotationRoute;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ContributorValidationController;
 use App\Http\Controllers\NewsController;
+use App\Http\Controllers\NewsUserController;
 use App\Http\Controllers\UserActivitiesController;
 use App\Http\Controllers\UserNewsController;
 use Illuminate\Support\Facades\Auth;
@@ -37,8 +38,8 @@ Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/activities', [UserActivitiesController::class, 'index'])->name('user.activities');
 Route::get('/activities/show/{id}', [UserActivitiesController::class, 'show'])->name('user.activities.show');
 // todo: news is shown as activities
-Route::get('/news', [UserActivitiesController::class, 'index'])->name('user.news');
-Route::get('/news/show/{id}', [UserActivitiesController::class, 'show'])->name('user.news.show');
+Route::get('/news', [UserNewsController::class, 'index'])->name('user.news');
+Route::get('/news/show/{id}', [NewsUserController::class, 'show'])->name('user.news.show');
 
 
 

@@ -117,17 +117,20 @@ class NewsController extends Controller
             'image' => 'image|mimes:jpeg,png,jpg',
         ]);
 
-        $news->title = $validatedData['title'];
-        $news->category = $validatedData['category'];
-        $news->description = $validatedData['description'];
-        $news->source = $validatedData['source'];
+        // $news->title = $validatedData['title'];
+        // $news->category = $validatedData['category'];
+        // $news->description = $validatedData['description'];
+        // $news->source = $validatedData['source'];
+
+        $news->fill($validatedData); // <--- simplified
+
 
         // Jika ada unggahan gambar baru
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             $image_path = public_path('assets/img/news/' . $news->image);
             // Hapus gambar lama sebelum menyimpan yang baru
             $this->deleteImage($image_path);
-            
+
             $request->file('image')->move('assets/img/news', $request->file('image')->getClientOriginalName());
             $news->image = $request->file('image')->getClientOriginalName();
         }
