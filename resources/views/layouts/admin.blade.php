@@ -9,6 +9,7 @@
 
     {{-- @vite('public/js/app.js') --}}
     <script src="{{ asset('js/preline.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 
@@ -64,7 +65,6 @@
 
                 <div class="flex flex-row items-center justify-end gap-2">
 
-                    {{-- todo: nama pengguna --}}
                     <span class="text-white">{{ auth()->user()->name }}</span>
 
                     <div class="hs-dropdown relative inline-flex" data-hs-dropdown-placement="bottom-right">
