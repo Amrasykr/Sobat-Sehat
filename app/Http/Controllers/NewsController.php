@@ -15,14 +15,14 @@ class NewsController extends Controller
     {
         $search = request('search');
 
-        $news  = News::query();
-    
+        $news = News::query();
+
         if ($search) {
             $news->where('title', 'like', '%' . $search . '%');
         }
-    
-        $news =  $news->get();
-    
+
+        $news = $news->get();
+
         return view('admin.news.index', compact('news'));
     }
 
@@ -49,7 +49,7 @@ class NewsController extends Controller
         ]);
 
         $validatedData['author_id'] = $user->id;
-    
+
         $news = new News([
             'title' => $validatedData['title'],
             'category' => $validatedData['category'],
@@ -57,14 +57,14 @@ class NewsController extends Controller
             'source' => $validatedData['source'],
             'author_id' => $validatedData['author_id'],
         ]);
-    
+
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             $request->file('image')->move('assets/img/news', $request->file('image')->getClientOriginalName());
             $news->image = $request->file('image')->getClientOriginalName();
         }
-    
+
         $news->save();
-  
+
         if ($news) {
             return redirect()->route('admin.news');
         } else {
@@ -101,43 +101,43 @@ class NewsController extends Controller
      */
 
 
-public function update(Request $request, string $id)
-{
-    $news = News::find($id);
+    public function update(Request $request, string $id)
+    {
+        $news = News::find($id);
 
-    if (!$news) {
-        return $this->responseNotFound('News not found.');
-    }
-
-    $validatedData = $request->validate([
-        'title' => 'required',
-        'category' => 'required|in:olahraga,kesehatan',
-        'description' => 'required',
-        'source' => 'required',
-        'image' => 'image|mimes:jpeg,png,jpg',
-    ]);
-
-    $news->title = $validatedData['title'];
-    $news->category = $validatedData['category'];
-    $news->description = $validatedData['description'];
-    $news->source = $validatedData['source'];
-
-    // Jika ada unggahan gambar baru
-    if ($request->hasFile('image') && $request->file('image')->isValid()) {
-        // Hapus gambar lama sebelum menyimpan yang baru
-        if (File::exists(public_path('assets/img/news/' . $news->image))) {
-            File::delete(public_path('assets/img/news/' . $news->image));
+        if (!$news) {
+            return $this->responseNotFound('News not found.');
         }
-        $request->file('image')->move('assets/img/news', $request->file('image')->getClientOriginalName());
-        $news->image = $request->file('image')->getClientOriginalName();
+
+        $validatedData = $request->validate([
+            'title' => 'required',
+            'category' => 'required|in:olahraga,kesehatan',
+            'description' => 'required',
+            'source' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg',
+        ]);
+
+        $news->title = $validatedData['title'];
+        $news->category = $validatedData['category'];
+        $news->description = $validatedData['description'];
+        $news->source = $validatedData['source'];
+
+        // Jika ada unggahan gambar baru
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $image_path = public_path('assets/img/news/' . $news->image);
+            // Hapus gambar lama sebelum menyimpan yang baru
+            $this->deleteImage($image_path);
+            
+            $request->file('image')->move('assets/img/news', $request->file('image')->getClientOriginalName());
+            $news->image = $request->file('image')->getClientOriginalName();
+        }
+
+        $news->save();
+
+        return redirect()->route('admin.news');
     }
 
-    $news->save();
 
-    return redirect()->route('admin.news');
-}
-
-    
 
     /**
      * Remove the specified resource from storage.
@@ -145,14 +145,27 @@ public function update(Request $request, string $id)
     public function destroy(string $id)
     {
         $news = News::find($id);
-    
+
         if (!$news) {
             return $this->responseNotFound('News not found.');
         }
-    
+
         $news->delete();
-    
+
+        // get and delete image
+        $image_path = public_path('assets/img/news/' . $news->image);
+        $this->deleteImage($image_path);
+
+
         return redirect()->route('admin.news');
     }
-    
+
+    private function deleteImage(string $image_path)
+    {
+        $is_old_image_exist = File::exists($image_path);
+        if ($is_old_image_exist) {
+            File::delete($image_path);
+        }
+    }
 }
+

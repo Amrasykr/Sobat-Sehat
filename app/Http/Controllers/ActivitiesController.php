@@ -34,7 +34,7 @@ class ActivitiesController extends Controller
     {
         $user = $request->user();
         $role = $user->role;
-    
+
         if ($role === 'admin') {
             $query = Activities::query();
         } elseif ($role === 'kontributor') {
@@ -42,21 +42,21 @@ class ActivitiesController extends Controller
         } else {
             return view('admin.activities.index')->with('error', 'Unauthorized to access this resource.');
         }
-    
+
         $search = $request->input('search');
         if ($search) {
             $query->where('title', 'like', '%' . $search . '%');
         }
-    
+
         $activities = $query->get();
-    
+
         if ($activities->isEmpty()) {
             return view('admin.activities.index')->with('error', 'There are no activities.')->with(compact('activities'));
         } else {
             return view('admin.activities.index')->with('success', 'Successfully displays activities data')->with(compact('activities'));
         }
     }
-    
+
 
     public function create()
     {
@@ -160,19 +160,21 @@ class ActivitiesController extends Controller
             'activity_date' => 'required',
         ]);
 
-        $activities->title = $validatedData['title'];
-        $activities->category = $validatedData['category'];
-        $activities->description = $validatedData['description'];
-        $activities->location = $validatedData['location'];
-        $activities->location_link = $validatedData['location_link'];
-        $activities->activity_date = $validatedData['activity_date'];
+        // $activities->title = $validatedData['title'];
+        // $activities->category = $validatedData['category'];
+        // $activities->description = $validatedData['description'];
+        // $activities->location = $validatedData['location'];
+        // $activities->location_link = $validatedData['location_link'];
+        // $activities->activity_date = $validatedData['activity_date'];
+
+        $activities->fill($validatedData); // <--- simplified
 
         // Jika ada unggahan gambar baru
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $image_path = public_path('assets/img/activities/' . $activities->image);
             // Hapus gambar lama sebelum menyimpan yang baru
-            if (File::exists(public_path('assets/img/activities/' . $activities->image))) {
-                File::delete(public_path('assets/img/activities/' . $activities->image));
-            }
+            $this->deleteImage($image_path);
+
             $request->file('image')->move('assets/img/activities', $request->file('image')->getClientOriginalName());
             $activities->image = $request->file('image')->getClientOriginalName();
         }
@@ -195,15 +197,24 @@ class ActivitiesController extends Controller
             return $this->responseNotFound('Activity not found.');
         }
 
+        // get and delete image
+        $image_path = public_path('assets/img/activities/' . $activity->image);
+        $this->deleteImage($image_path);
+
         if ($user->role === 'admin' || $user->id === $activity->author_id) {
             $activity->delete();
             return redirect()->route('admin.activities')->with('success', 'Activity deleted successfully.');
         } else {
             return redirect()->route('admin.activities')->with('error', 'Unauthorized to delete this activity.');
         }
-
-        // TODO: delte image from public storage
     }
 
 
+    private function deleteImage(string $image_path)
+    {
+        $is_old_image_exist = File::exists($image_path);
+        if ($is_old_image_exist) {
+            File::delete($image_path);
+        }
+    }
 }
