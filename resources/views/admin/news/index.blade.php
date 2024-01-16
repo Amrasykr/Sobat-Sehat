@@ -269,7 +269,7 @@
                                                 <div class="flex items-center gap-x-3">
                                                     <div
                                                         class="image-container | bg-gray-200 h-[2.375rem] w-[2.375rem] rounded-full overflow-hidden">
-                                                        <img class="" src="" alt="">
+                                                        <img class="" src="{{ asset("img/user.png") }}" alt="">
                                                     </div>
                                                     <div class="grow">
                                                         <span

@@ -217,7 +217,7 @@
                                                     <div
                                                         class="image-container | bg-gray-200 h-10 w-10 ring-2 ring-offset-2 ring-gray-200 rounded-full overflow-hidden">
                                                         <img class=""
-                                                            src="{{ asset("assets/img/activities/$c->image") }}"
+                                                            src="{{ asset("img/user.png") }}"
                                                             alt="">
                                                     </div>
                                                     <div>
